@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tm-proyect"
+version = "0.1.0"
+description = "Repository to classify music genres based on song lyrics"
+authors = ["pablo <garciaborreguerop@gmail.com>"]
+readme = "README.md"
+packages = [{include = "tm_proyect"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+gensim = "^4.3.0"
+sklearn = "^0.0.post1"
+nltk = "^3.8"
+pandas = "^1.5.2"
+torch = "^1.13.1"
+scikit-learn = "^1.2.0"
+matplotlib = "^3.6.2"
+torchmetrics = "^0.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

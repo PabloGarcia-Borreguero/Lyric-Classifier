@@ -1,29 +1,31 @@
 "Module containing functionality of Latent Dirichlet Allocation method for Topic Modelling"
 import gensim
 import pandas as pd
-from collections.abc import Iterable
-import tqdm
 
+
+
+import numpy as np
 
 from preprocess import Preprocessor
 from feature_engineer import FeatureEngineer
-from cluster_docs import Clusterer
-from gensim.models.hdpmodel import HdpModel
-from gensim.models.callbacks import PerplexityMetric, ConvergenceMetric, CoherenceMetric
+from utils.constants import DEFAULT_TOPIC_MODEL_PATH
 
 
 class LDA():
 
-    def __init__(self, num_topics: int):
+    def __init__(self, 
+        num_topics: int = None,
+        passes: int = None,
+        ):
         """Initializes LDA class"""
         self.processor = Preprocessor()
         self.fe = FeatureEngineer()
         self.topics = num_topics
-        self.epochs = 20
+        self.passes = passes
         
     
     
-    def train_lda(self, df):
+    def train_lda(self, corpus, dictionary):
         """_summary_
 
         Args:
@@ -32,23 +34,27 @@ class LDA():
         Returns:
             _type_: _description_
         """
-        df_processed = self.processor.run_preprocessing(df)
-        corpus, dictionary = self.fe.construct_dictionary(list(df_processed["Output"]))
 
         ldamodel = gensim.models.ldamodel.LdaModel(
             corpus=corpus, 
             num_topics = 100, 
             id2word=dictionary, 
-            passes=self.epochs,
+            passes=self.passes,
             per_word_topics=True
         )
-        ldamodel.save('assets/model.gensim')
-
-        embeddings = self.get_topic_vectors(df_processed, corpus, ldamodel)
-
-        return embeddings
+        ldamodel.save(DEFAULT_TOPIC_MODEL_PATH)
 
     def get_topic_vectors(self, df, corpus, ldamodel):
+        """_summary_
+
+        Args:
+            df (_type_): _description_
+            corpus (_type_): _description_
+            ldamodel (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         train_vecs = []
         for i in range(len(corpus)):
             top_topics = ldamodel.get_document_topics(corpus[i], minimum_probability=0.0)
@@ -58,12 +64,5 @@ class LDA():
             topic_vec.extend([df.iloc[i].Popularity])
             train_vecs.append(topic_vec)
 
-        return train_vecs
+        return np.asarray(train_vecs)
 
-if __name__ == '__main__':
-    df = pd.read_csv("assets/lyrics.csv")
-    df = df.sample(100)
-    #clusterer = Clusterer()
-    #topics = clusterer.group_embeddings(df)
-    trainer = LDA(num_topics=150)
-    trainer.train_lda(df)
