@@ -9,7 +9,7 @@ as classifiers.
 The repository holds Poetry as a virtual environment manager.
 
 ### Usage
-Use ´´´poetry install´´´ to deploy the necessary dependencies.
+Use ```poetry install``` to deploy the necessary dependencies.
 
 ## Training Latent Dirichlet Allocation for Topic Modelling Vectors
 

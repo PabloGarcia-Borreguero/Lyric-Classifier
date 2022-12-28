@@ -10,3 +10,5 @@
 # Folder source #
 ###################
 assets/
+vscode/
+**/__pycache__

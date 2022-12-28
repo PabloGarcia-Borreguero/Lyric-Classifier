@@ -100,7 +100,8 @@ class Preprocessor():
 
         return df
     
-    def _bigrams(self, tokens: List[str])-> List[str]:
+    @staticmethod
+    def _bigrams(tokens: List[str])-> List[str]:
         """Deploys bigram transformer and transforms 
         token collections into bigrams."""
         bigram = Phrases(tokens, min_count = 5)
