@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  tmproyect:
+    image: tmproyect
+    build:
+      context: .
+      dockerfile: ./Dockerfile

@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Train Topic Modeller",
+            "type": "python",
+            "request": "launch",
+            "program": "src/train_topic_modeller_script.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-t",
+                "80000",
+                "-n",
+                "80"
+            ]
+        },
+        {
+            "name": "Train Neural Network",
+            "type": "python",
+            "request": "launch",
+            "program": "src/train_nn_script.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-t",
+                "10000"
+            ]
+        },
+        {
+            "name": "Classify Songs",
+            "type": "python",
+            "request": "launch",
+            "program": "src/classification.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Docker: Python - General",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "/app"
+                    }
+                ],
+                "projectType": "general"
+            }
+        }
+    ]
+}

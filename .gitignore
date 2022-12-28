@@ -1,0 +1,12 @@
+# Compiled source #
+###################
+*.csv
+*.gensim
+*.pt
+*.pkl
+*.npy
+*.pyc
+
+# Folder source #
+###################
+assets/
