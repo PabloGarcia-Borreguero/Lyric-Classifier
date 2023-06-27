@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 
 
 
+
 class NeuralNetwork(nn.Module):
 
     def __init__(
@@ -35,7 +36,6 @@ class NeuralNetwork(nn.Module):
     def forward(self, x):
 
         x = x.to(torch.float32)
-
         return self.seq(x)
 
     def begin_training(self, X_train: np.ndarray, y_train, X_test, y_test):
@@ -94,8 +94,6 @@ class NeuralNetwork(nn.Module):
                 
                     # Iterate through test dataset
                     for embeddings, labels in test_loader:
-                        # Load images with gradient accumulation capabilities
-                        #images = images.view(-1, 28*28).requires_grad_()
 
                         # Forward pass only to get logits/output
                         outputs = model(embeddings)
@@ -144,12 +142,14 @@ class NeuralNetwork(nn.Module):
     
     def scale_and_standardize(self, X):
 
+        X = X.reshape(-1, 1)
+
         sc_X = StandardScaler()
         sc_X = sc_X.fit_transform(X)
 
-        X =  normalize(sc_X, axis=1)
+        #X =  normalize(sc_X, axis=1)
 
-        return X
+        return sc_X
 
     def predict(self, embeddings):
         self.eval()

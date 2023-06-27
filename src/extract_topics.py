@@ -8,7 +8,7 @@ import numpy as np
 
 from preprocess import Preprocessor
 from feature_engineer import FeatureEngineer
-from utils.constants import DEFAULT_TOPIC_MODEL_PATH
+#from utils.constants import DEFAULT_TOPIC_MODEL_PATH
 
 
 class LDA():

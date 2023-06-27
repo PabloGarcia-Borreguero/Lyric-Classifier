@@ -18,6 +18,17 @@
             ]
         },
         {
+            "name": "Train Doc2Vec",
+            "type": "python",
+            "request": "launch",
+            "program": "src/train_doc2vec.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-t",
+                "8000"
+            ]
+        },
+        {
             "name": "Train Neural Network",
             "type": "python",
             "request": "launch",
@@ -29,7 +40,7 @@
             ]
         },
         {
-            "name": "Classify Songs",
+            "name": "Classify Song",
             "type": "python",
             "request": "launch",
             "program": "src/classification.py",

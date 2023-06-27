@@ -6,7 +6,7 @@ DEFAULT_FILE_PATH = "assets/lyrics.csv"
 
 PROCESSED_FILE_PATH = "assets/processed_df.csv"
 
-DEFAULT_TOPIC_MODEL_PATH = "assets/model.gensim"
+DEFAULT_DOC2VEC_MODEL_PATH = "assets/model.gensim"
 
 CORPUS_PATH = "assets/corpus.pkl"
 
